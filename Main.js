@@ -1,11 +1,18 @@
-const puppeteer = require("puppeteer")
+const puppeteer = require('puppeteer');
+var fs = require('fs');
 
-const getScreenshot = async () => {
-    const browser = await puppeteer.launch()
-    const page = await browser.newPage()
-    await page.goto("http://www.google.com")
-    await page.screenshot({ path: "screenshot.png" })
-    await browser.close()
+getData()
+
+async function getData() {
+    const browser = await puppeteer.launch();
+    const page = await browser.newPage();
+    await page.goto("https://lewifi.fr/");
+    var a = await page.content();
+    console.log(a);
+    fs.appendFile('texte.txt',a,function (err) {
+        if (err){}
+        else{}
+    })
+    await page.close();
+    await browser.close();
 }
-
-getScreenshot()
