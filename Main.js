@@ -6,7 +6,7 @@ getData()
 async function getData() {
     const browser = await puppeteer.launch();
     const page = await browser.newPage();
-    await page.goto("https://lewifi.fr/");
+    await page.goto("URL.com");
     var a = await page.content();
     console.log(a);
     fs.appendFile('texte.txt',a,function (err) {
