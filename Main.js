@@ -1,18 +1,25 @@
 const puppeteer = require('puppeteer');
-var fs = require('fs');
+const readline = require('readline');
+const rl = readline.createInterface({
+    input: process.stdin,
+    output: process.stdout
+});
 
-getData()
+rl.question("Quelle est votre recherche internet\n", rech => {
+    getData("https://www.google.com/search?q="+rech);
+});
 
-async function getData() {
-    const browser = await puppeteer.launch();
+async function getData(url) {
+    const browser = await puppeteer.launch({headless:false});
     const page = await browser.newPage();
-    await page.goto("URL.com");
-    var a = await page.content();
-    console.log(a);
-    fs.appendFile('texte.txt',a,function (err) {
-        if (err){}
-        else{}
-    })
-    await page.close();
-    await browser.close();
+    await page.goto(url);
+    const lien = await page.evaluate(()=> {
+        let lien = [];
+        let a = document.querySelectorAll("a h3");
+        for (let element of a){
+            lien.push(element.innerText)
+        }
+        return lien
+    });
+    console.log(lien);
 }
