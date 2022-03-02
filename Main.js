@@ -5,19 +5,21 @@ const rl = readline.createInterface({
     output: process.stdout
 });
 
-rl.question("Quelle est votre recherche internet\n", rech => {
+rl.question("Quelle est votre recherche ?\n", rech => {
     getData("https://www.google.com/search?q="+rech);
 });
 
 async function getData(url) {
-    const browser = await puppeteer.launch({headless:false});
+    const browser = await puppeteer.launch({headless: true});
     const page = await browser.newPage();
+    await page.setViewport({height: 1080, width: 1920})
     await page.goto(url);
-    const lien = await page.evaluate(()=> {
+    const lien = await page.evaluate(() => {
+        let slct = "a h3"
+        let a = document.querySelectorAll(slct);
         let lien = [];
-        let a = document.querySelectorAll("a h3");
-        for (let element of a){
-            lien.push(element.innerText)
+        for (let element of a) {
+            lien.push(element.href)
         }
         return lien
     });
