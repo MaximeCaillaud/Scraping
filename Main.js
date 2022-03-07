@@ -10,7 +10,7 @@ rl.question("Quelle est votre recherche ?\n", rech => {
 });
 
 async function getData(url) {
-    const browser = await puppeteer.launch({headless: true});
+    const browser = await puppeteer.launch({headless: false});
     const page = await browser.newPage();
     await page.setViewport({height: 800, width: 1200})
     await page.goto(url);
@@ -24,4 +24,16 @@ async function getData(url) {
         return lien
     });
     console.log(lien);
+    const page2 = await browser.newPage();
+    let titre = [];
+    for (let i of lien){
+        await page2.goto(i);
+        const ttl = await page2.evaluate(()=> {
+            let slct = "title";
+            let ttl = document.querySelectorAll(slct);
+            return ttl.innerText;
+        });
+        titre.push(ttl);
+    }
+    console.log(titre);
 }
