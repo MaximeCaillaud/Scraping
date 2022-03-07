@@ -12,10 +12,10 @@ rl.question("Quelle est votre recherche ?\n", rech => {
 async function getData(url) {
     const browser = await puppeteer.launch({headless: true});
     const page = await browser.newPage();
-    await page.setViewport({height: 1080, width: 1920})
+    await page.setViewport({height: 800, width: 1200})
     await page.goto(url);
     const lien = await page.evaluate(() => {
-        let slct = "a h3"
+        let slct = "div.yuRUbf>a";
         let a = document.querySelectorAll(slct);
         let lien = [];
         for (let element of a) {
