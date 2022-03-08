@@ -30,7 +30,7 @@ async function getData(url) {
         await page2.goto(i);
         const ttl = await page2.evaluate(()=> {
             let slct = "title";
-            let ttl = document.querySelectorAll(slct);
+            let ttl = document.querySelector(slct);
             return ttl.innerText;
         });
         titre.push(ttl);
