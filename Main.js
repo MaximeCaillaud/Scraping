@@ -26,6 +26,7 @@ async function scraping(browser,lien){
         const datas = await page.evaluate(getAllP);
         Alldata.push(datas);
     }
+    console.log(Alldata);
 }
 
 function getP(){
