@@ -5,20 +5,12 @@ const rl = readline.createInterface({
     output: process.stdout
 });
 
-let rech = rl.question("Quelle est votre recherche ?\n");
-let bool = rl.question("Vous vous un affichage Y/N");
-
-if (bool=="y"){
+rl.question("Quelle est votre recherche ?\n",rech =>{
     getLien("https://www.google.com/search?q="+rech);
-    bool = false;
-}
-else {
-    getLien("https://www.google.com/search?q=" + rech);
-    bool = true;
-}
+});
 
 async function getLien(url) {
-    const browser = await puppeteer.launch({headless: bool});
+    const browser = await puppeteer.launch({headless: true});
     const page = await browser.newPage();
     await page.setViewport({height: 800, width: 1200})
     await page.goto(url);
