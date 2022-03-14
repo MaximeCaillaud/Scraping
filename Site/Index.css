@@ -1,0 +1,15 @@
+body
+{
+    background: rgb(233,255,0);
+background: radial-gradient(circle, rgba(233,255,0,1) 35%, rgba(255,0,0,1) 100%);
+
+    margin: auto;
+}
+
+div
+{
+    justify-content: center;
+    margin-top: 400px;
+    text-align: center;
+    
+}
