@@ -1,15 +1,33 @@
-body
-{
-    background: rgb(233,255,0);
-background: radial-gradient(circle, rgba(233,255,0,1) 35%, rgba(255,0,0,1) 100%);
-
+body {
+    background: rgb(233,255,255);
     margin: auto;
 }
 
-div
-{
+div.boite {
     justify-content: center;
-    margin-top: 400px;
+    margin-top: 300px;
     text-align: center;
-    
 }
+
+div.recherche{
+    font-family: 'Helvetica';
+    font-size: x-large;
+    padding: 50px 100px 15px 100px;
+    text-align: center;
+}
+
+div.texte{
+    font-family: 'Helvetica';
+    font-size: large;
+    padding: 0 100px 50px 100px;
+    text-align: center;
+}
+
+div.oui{
+    width: fit-content;
+    height: fit-content;
+    border: black 1px solid;
+    margin:auto;
+    border-radius:20% ;
+}
+

@@ -44,7 +44,6 @@ function getAllP(){
     }
     return datas;
 }
-
 function getAllA(){
     let slct = "div.yuRUbf>a";
     let a = document.querySelectorAll(slct);
