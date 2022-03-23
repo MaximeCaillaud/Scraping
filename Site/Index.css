@@ -1,33 +1,79 @@
 body {
     background: rgb(233,255,255);
+
+}
+
+.haut_de_page{
+    background: rgb(63,124,251);
+    background: radial-gradient(circle, rgba(63,124,251,1) 0%, rgba(64,121,225,0.6026785714285714) 20%, rgba(67,187,162,1) 75%, rgba(70,252,100,1) 100%);
+    display: flex;
+    justify-content: center;
+    border: black solid 1px;
+    border-radius: 20px;
+    width: 95%;
     margin: auto;
+}
+
+#bienvenue{
+    text-align: center;
+    font-family: Helvetica;
+    font-size: 24px;
 }
 
 div.boite {
     justify-content: center;
-    margin-top: 300px;
+    text-align: center;
+    border: solid 1px black;
+    font-family: 'Luxurious Roman', cursive;
+    text-decoration: none;
+    font-size: 20px;
+    border-radius: 20px;
+    width: 80%;
+    margin: auto;
+    background-color: aliceblue;
+}
+
+#recherche{
+    width: 300px;
+    height: 30px;
+    font-size: 24px;
     text-align: center;
 }
 
-div.recherche{
-    font-family: 'Helvetica';
-    font-size: x-large;
-    padding: 50px 100px 15px 100px;
+.bouton a {
+    display:block;
+    margin: auto;
+    width: 150px;
+    line-height:50px;
+    text-align:center;
+    background:burlywood no-repeat;
+    color:black;
+    text-decoration:none;
+    border-radius: 20px;
+}
+.bouton a:hover {
+    background:cyan no-repeat;
+}
+
+.resultat{
+    justify-content: center;
     text-align: center;
+    border: solid 1px black;
+    font-family: 'Helvetica', cursive;
+    text-decoration: none;
+    font-size: 20px;
+    border-radius: 20px;
+    width: 80%;
+    margin: auto;
+    background-color: aliceblue;
 }
 
-div.texte{
-    font-family: 'Helvetica';
-    font-size: large;
-    padding: 0 100px 50px 100px;
+.bas_de_page{
     text-align: center;
+    font-family: 'Luxurious Roman', cursive;
+    text-decoration: none;
+    font-size: 12px;
+    color: white;
+    background: rgb(131,58,180);
+    background: linear-gradient(137deg, rgba(131,58,180,1) 0%, rgba(253,29,29,1) 50%, rgba(252,176,69,1) 100%);
 }
-
-div.oui{
-    width: fit-content;
-    height: fit-content;
-    border: black 1px solid;
-    margin:auto;
-    border-radius:20% ;
-}
-
