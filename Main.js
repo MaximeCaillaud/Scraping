@@ -4,8 +4,6 @@ const app = express()
 const lda = require('lda');
 const {request, response} = require("express");
 
-// https://www.google.com/search?q=
-
 app.get('/',(req,res) =>{
     res.sendFile('/Users/33699/WebstormProjects/Scraping/Site/index.html');
 })
@@ -15,7 +13,6 @@ app.get('/recherche',async (req, res) => {
     let a = req.query;
     res.send(await getLien('https://www.google.com/search?q=' + a.rech, a.rech));
 })
-
 
 async function getLien(url,rech) {
     const browser = await puppeteer.launch({headless: true});
