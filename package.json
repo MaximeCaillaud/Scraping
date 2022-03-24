@@ -1,0 +1,7 @@
+{
+  "name": "Scraping",
+  "version": "1.0.0",
+  "dependencies": {
+    "lda": "^0.2.0"
+  }
+}
