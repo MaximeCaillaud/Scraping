@@ -1,7 +1,24 @@
 const puppeteer = require('puppeteer');
+const readline = require('readline');
+const express = require('express')
+const app = express()
 const lda = require('lda');
+const {request, response} = require("express");
+const rl = readline.createInterface({
+    input: process.stdin,
+    output: process.stdout
+});
+// https://www.google.com/search?q=
+app.get('/',(req,res) =>{
+    res.sendFile('/Users/33699/WebstormProjects/Scraping/Site/index.html');
+})
+app.listen(5500,function(){console.log('Server Started: http://localhost:5500 ')})
 
-getLien("https://www.google.com/search?q=" + rech, rech)
+app.get('/recherche',async (req, res) => {
+    let a = req.query;
+    res.send(await getLien('https://www.google.com/search?q=' + a.rech, a.rech));
+})
+
 
 async function getLien(url,rech) {
     const browser = await puppeteer.launch({headless: true});
@@ -9,12 +26,14 @@ async function getLien(url,rech) {
     await page.setViewport({height: 800, width: 1200})
     await page.goto(url);
     const lien = await page.evaluate(getAllA);
-    scraping(browser,lien,rech)
+    let a = await scraping(browser,lien,rech);
+    return a;
 }
 
 async function scraping(browser,lien,rech){
     const page = await browser.newPage();
     let Alldata = [];
+    let body = "";
     for (let i of lien) {
         await page.goto(i);
         const datas = await page.evaluate(getAllP);
@@ -23,8 +42,8 @@ async function scraping(browser,lien,rech){
     for(let i of Alldata){
         for(let j of i){
             if(j.match(rech)){
-                console.log(j);
-                console.log(lda(j.match(/[^\.!\?]+[\.!\?]+/g),1,3,['fr']));
+                console.log(j)
+                return j;
             }
         }
     }
@@ -50,7 +69,7 @@ function getAllA(){
     let a = document.querySelectorAll(slct);
     let lien = [];
     for (let element of a) {
-        lien.push(element.href)
+        lien.push(element.href);
     }
-    return lien
+    return lien;
 }

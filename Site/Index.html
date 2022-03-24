@@ -4,44 +4,94 @@
         <head>
             <meta charset="utf-8" />
             <title>Scraping</title>
-            <link rel="stylesheet" href="Index.css" />
-            
         </head>
+        <style>
+            body {
+                background: rgb(233,255,255);
+                margin: 0;
+            }
 
+            .haut_de_page{
+                background: rgba(100,100,100,0.5);
+                display: flex;
+                justify-content: center;
+                border-bottom: rgba(50,50,50,0.5) solid 8px;
+                width: 100%;
+                margin: 0;
+            }
+
+            #bienvenue{
+                text-align: center;
+                font-family: Helvetica,serif;
+                font-size: 24px;
+            }
+
+            div.boite {
+                justify-content: center;
+                text-align: center;
+                border: solid 1px black;
+                font-family: Helvetica,serif;
+                text-decoration: none;
+                font-size: 20px;
+                width: 100%;
+                margin: 0;
+                background-color: aliceblue;
+                padding-bottom:25px;
+            }
+
+            #recherche{
+                width: 300px;
+                height: 30px;
+                font-size: 24px;
+                text-align: center;
+            }
+
+            .bouton a {
+                display:block;
+                margin: auto;
+                width: 150px;
+                line-height:50px;
+                text-align:center;
+                background-color:rgba(100,100,100,0.5);
+                color:black;
+                text-decoration:none;
+            }
+            .bouton a:hover {
+                background-color:rgba(50,50,50,0.5);
+            }
+            .recherche {
+                padding:20px
+            }
+        </style>
         <body>
-            <header class="haut_de_page">
-                <span id="bienvenue"><p>BIENVENUE</p></span><br>
 
+            <header class="haut_de_page">
+                <span id="bienvenue"><p>Scraping</p></span><br>
             </header>
+
             <br>
             <div class="boite">
                 <form>
                     <br>
-                    <label>VOTRE RECHERCHE :</label><br>
+                    <label for="recherche">Votre recherche :</label><br>
                     <br>
                     <input id="recherche" type="text" name="recherche">
                     <br>
                     <br>
-                    <span class="bouton"><a href="#">CHERCHER</a></span>
-
-
+                    <span class="bouton"><a href="#">Chercher</a></span>
                 </form>
-                <p>Appuyez sur CHERCHER d'effectuer la recherche ...</p>
             </div>
-
-            <br>
-
-            <div class="resultat">
-                <span class="rrrr">RESULTATS RECHERCHE 0</span><br>
-                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-                    Aenean eu ornare erat. Integer slorem. Nulla felis unt cursus ipsum.
-                </p>
-            </div>
-            <br>
-
-        <script src="Index.js">
-        </script>
-
         </body>
-
+        <script>
+            let bouton = document.querySelector('.bouton')
+            let input = document.querySelector('input')
+            let body = document.querySelector('body')
+            bouton.addEventListener('click',async () => {
+                const recherche = await fetch(`/recherche?rech=${input.value}`)
+                .then(response => response.text())
+                let a = document.createElement("div").textContent = recherche;
+                a.className = "recherche"
+                body.append(a);
+            })
+        </script>
     </html>
