@@ -1,14 +1,7 @@
 const puppeteer = require('puppeteer');
-const readline = require('readline');
 const lda = require('lda');
-const rl = readline.createInterface({
-    input: process.stdin,
-    output: process.stdout
-});
 
-rl.question("Quelle est votre recherche ?\n",rech =>{
-    getLien("https://www.google.com/search?q="+rech,rech);
-});
+getLien("https://www.google.com/search?q=" + rech, rech)
 
 async function getLien(url,rech) {
     const browser = await puppeteer.launch({headless: true});
@@ -30,7 +23,7 @@ async function scraping(browser,lien,rech){
     for(let i of Alldata){
         for(let j of i){
             if(j.match(rech)){
-                console.log(j)
+                console.log(j);
                 console.log(lda(j.match(/[^\.!\?]+[\.!\?]+/g),1,3,['fr']));
             }
         }

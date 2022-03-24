@@ -14,7 +14,6 @@
 
             </header>
             <br>
-
             <div class="boite">
                 <form>
                     <br>
@@ -40,31 +39,7 @@
             </div>
             <br>
 
-        <script src="/Main.js">
-            let rec = document.querySelector('#recherche');
-            let bout = document.querySelector('.bouton');
-            bout.addEventListener("mousedown", fonction_recherche);
-            let i = 0;
-
-            function fonction_recherche(event) {
-                i += 1;
-                let cte = document.querySelector('#recherche');
-                let bri = document.createElement("br");
-                let adiv = document.createElement("div");
-                adiv.className = "resultat";
-                document.body.append(adiv);
-                let aspan = document.createElement("span");
-                aspan.className = "rrrr";
-                adiv.append(aspan);
-                adiv.append(bri);
-                let ap = document.createElement("p");
-                adiv.append(ap);
-                document.body.append(bri);
-                let j = adiv.querySelector("p");
-                aspan.textContent="RESULTAT RECHERCHE "+ i + " : " + cte;
-                j.textContent="kflkdsjfklsdjfkljsdlkfjsjdkfjklsldjflksjdkfljsdlkfjslkdfj";
-            }
-
+        <script src="Index.js">
         </script>
 
         </body>
