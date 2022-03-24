@@ -60,6 +60,7 @@
                 background-color:rgba(50,50,50,0.5);
             }
             .recherche {
+                border: black solid 1px;
                 padding:20px
             }
         </style>
@@ -87,11 +88,17 @@
             let input = document.querySelector('input')
             let body = document.querySelector('body')
             bouton.addEventListener('click',async () => {
-                const recherche = await fetch(`/recherche?rech=${input.value}`)
-                .then(response => response.text())
-                let a = document.createElement("div").textContent = recherche;
-                a.className = "recherche"
-                body.append(a);
+                let recherche = await fetch(`/recherche?rech=${input.value}`)
+                .then(response => response.text());
+                recherche = recherche.split('£');
+                for (let i of recherche){
+                    let a = document.createElement('div');
+                    let br = document.createElement('br');
+                    a.textContent = i;
+                    a.className = "recherche";
+                    body.append(a);
+                    body.append(br);
+                }
             })
         </script>
     </html>
