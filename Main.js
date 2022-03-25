@@ -5,7 +5,7 @@ const lda = require('lda');
 const {request, response} = require("express");
 
 app.get('/',(req,res) =>{
-    res.sendFile('/Users/33699/WebstormProjects/Scraping/Site/index.html');
+    res.sendFile('/Users/dariu/WebstormProjects/Scraping/Site/index.html');
 })
 app.listen(5500,function(){console.log('Server Started: http://localhost:5500 ')})
 
@@ -31,12 +31,18 @@ async function scraping(browser,lien,rech){
         await page.goto(i);
         const datas = await page.evaluate(getAllP);
         Alldata.push(datas);
+        topic = getTopic(Alldata[0]);
+        console.log(topic)
     }
     for(let i of Alldata){
         for(let j of i){
-            if(j.match(rech)) {
-                console.log(lda(j.match(/[^\.!\?]+[\.!\?$]+/),1,5,['fr']))
-                body+=j+"£"
+            let test = 0;
+            for (let v of topic) {
+                if (j.match(v)&&test===0){
+                    console.log(j);
+                    body+=j+"£";
+                    test = 1;
+                }
             }
         }
     }
@@ -66,4 +72,13 @@ function getAllA(){
         lien.push(element.href);
     }
     return lien;
+}
+
+function getTopic(i){
+    a = lda(i,1,5,['fr']);
+    b = [];
+    for (let i of a[0]){
+        b.push(i.term);
+    }
+    return b;
 }
